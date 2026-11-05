@@ -1,0 +1,19 @@
+[
+  {"id": "fernet", "ingrediente": "Fernet", "nombre": "Fernet Branca 750 ml", "marca": "Branca", "ml_envase": 750, "ean": "7790290101602", "abv": 39},
+  {"id": "coca", "ingrediente": "Coca", "nombre": "Coca-Cola regular 2,25 L", "marca": "Coca-Cola", "ml_envase": 2250, "ean": "7790895000997", "abv": 0},
+  {"id": "gin", "ingrediente": "Gin", "nombre": "Gordon's London Dry 700 ml", "marca": "Gordon's", "ml_envase": 700, "ean": "7791250002267", "abv": 37.5},
+  {"id": "tonica", "ingrediente": "Tónica", "nombre": "Schweppes Tónica 1,5 L", "marca": "Schweppes", "ml_envase": 1500, "ean": "7790895006715", "abv": 0},
+  {"id": "vino_tinto", "ingrediente": "Vino tinto", "nombre": "Benjamín Malbec 750 ml", "marca": "Benjamín Nieto", "ml_envase": 750, "ean": "7790070760579", "abv": 13},
+  {"id": "soda", "ingrediente": "Soda", "nombre": "Soda Manaos sifón 2 L", "marca": "Manaos", "ml_envase": 2000, "ean": "7798113301529", "abv": 0},
+  {"id": "aperol", "ingrediente": "Aperol", "nombre": "Aperol 750 ml", "marca": "Aperol", "ml_envase": 750, "ean": "7891136057029", "abv": 11},
+  {"id": "espumante", "ingrediente": "Espumante", "nombre": "Federico de Alvear Extra Brut 750 ml", "marca": "Federico de Alvear", "ml_envase": 750, "ean": "7791670027604", "abv": 12},
+  {"id": "campari", "ingrediente": "Campari", "nombre": "Campari Bitter 750 ml", "marca": "Campari", "ml_envase": 750, "ean": "7791200200781", "abv": 28.5},
+  {"id": "jugo_naranja", "ingrediente": "Jugo de naranja", "nombre": "Cepita Naranja Tentación 995 ml", "marca": "Cepita", "ml_envase": 995, "ean": "7790895648441", "abv": 0},
+  {"id": "ron", "ingrediente": "Ron", "nombre": "Havana Club Añejo Especial 750 ml", "marca": "Havana Club", "ml_envase": 750, "ean": "7792410532426", "abv": 40},
+  {"id": "vodka", "ingrediente": "Vodka", "nombre": "Smirnoff 700 ml", "marca": "Smirnoff", "ml_envase": 700, "ean": "7791250001345", "abv": 37.5},
+  {"id": "gancia", "ingrediente": "Gancia", "nombre": "Gancia Americano 950 ml", "marca": "Gancia", "ml_envase": 950, "ean": "7790950000160", "abv": 14},
+  {"id": "sprite", "ingrediente": "Sprite", "nombre": "Sprite 2,25 L", "marca": "Sprite", "ml_envase": 2250, "ean": "7790895001000", "abv": 0},
+  {"id": "vino_blanco", "ingrediente": "Vino blanco", "nombre": "Benjamín Chardonnay 750 ml", "marca": "Benjamín Nieto", "ml_envase": 750, "ean": "7790070760555", "abv": 12},
+  {"id": "gaseosa_lima_limon", "ingrediente": "Gaseosa lima-limón", "nombre": "7UP 1,5 L", "marca": "7UP", "ml_envase": 1500, "ean": "7791813444411", "abv": 0},
+  {"id": "energizante", "ingrediente": "Energizante", "nombre": "Speed 473 ml", "marca": "Speed", "ml_envase": 473, "ean": "7798119220183", "abv": 0}
+]

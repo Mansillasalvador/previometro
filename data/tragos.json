@@ -1,0 +1,14 @@
+[
+  {"id": "fernet_coca", "nombre": "Fernet con coca", "variable": "fernet", "porcentajes": [20, 30, 40], "fijos": [], "resto": "coca", "extras": []},
+  {"id": "gin_tonic", "nombre": "Gin tonic", "variable": "gin", "porcentajes": [10, 20, 30], "fijos": [], "resto": "tonica", "extras": [{"texto": "Rodaja de limón", "extra": "limon", "gramos": 15}]},
+  {"id": "tinto_verano", "nombre": "Tinto de verano", "variable": "vino_tinto", "porcentajes": [30, 50, 70], "fijos": [], "resto": "soda", "extras": []},
+  {"id": "aperol_spritz", "nombre": "Aperol spritz", "variable": "aperol", "porcentajes": [20, 30, 40], "fijos": [{"ingrediente": "espumante", "porcentaje": 50}], "resto": "soda", "extras": [{"texto": "Rodaja de naranja", "extra": "naranja", "gramos": 20}]},
+  {"id": "campari_naranja", "nombre": "Campari con naranja", "variable": "campari", "porcentajes": [20, 30, 45], "fijos": [], "resto": "jugo_naranja", "extras": []},
+  {"id": "cuba_libre", "nombre": "Cuba libre", "variable": "ron", "porcentajes": [10, 20, 30], "fijos": [], "resto": "coca", "extras": [{"texto": "Limón", "extra": "limon", "gramos": 15}]},
+  {"id": "destornillador", "nombre": "Destornillador", "variable": "vodka", "porcentajes": [10, 20, 30], "fijos": [], "resto": "jugo_naranja", "extras": []},
+  {"id": "caipiroska", "nombre": "Caipiroska", "variable": "vodka", "porcentajes": [30, 40, 50], "fijos": [], "resto": "soda", "extras": [{"texto": "1 limón", "extra": "limon", "gramos": 100}, {"texto": "2 cucharadas de azúcar", "extra": "azucar", "gramos": 25}]},
+  {"id": "mojito", "nombre": "Mojito", "variable": "ron", "porcentajes": [10, 20, 30], "fijos": [], "resto": "soda", "extras": [{"texto": "Menta", "extra": "menta", "gramos": null}, {"texto": "Limón", "extra": "limon", "gramos": 50}, {"texto": "Azúcar", "extra": "azucar", "gramos": 10}]},
+  {"id": "gancia_sprite", "nombre": "Gancia con Sprite", "variable": "gancia", "porcentajes": [30, 40, 50], "fijos": [], "resto": "sprite", "extras": [{"texto": "Limón", "extra": "limon", "gramos": 15}]},
+  {"id": "clerico", "nombre": "Clericó (jarra)", "variable": "vino_blanco", "porcentajes": [30, 50, 70], "fijos": [], "resto": "gaseosa_lima_limon", "extras": [{"texto": "Fruta picada", "extra": "fruta", "gramos": 50}]},
+  {"id": "vodka_energizante", "nombre": "Vodka con energizante", "variable": "vodka", "porcentajes": [10, 20, 30], "fijos": [], "resto": "energizante", "extras": []}
+]

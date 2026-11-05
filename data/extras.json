@@ -1,0 +1,12 @@
+{
+  "nota": "Precios manuales y editables, todos estimados. Referencia: SEPA CABA del 2026-11-04, una sola cadena en limón, naranja, fruta y hielo. Las cantidades por trago son aproximadas. La menta va sin costo.",
+  "hielo_g_por_trago": 100,
+  "extras": {
+    "limon": {"nombre": "Limón", "envase_g": 1000, "unidad": "kg", "precio": 2080, "entero": false, "estado": "estimado"},
+    "naranja": {"nombre": "Naranja", "envase_g": 1000, "unidad": "kg", "precio": 1860, "entero": false, "estado": "estimado"},
+    "menta": {"nombre": "Menta", "envase_g": null, "unidad": "atado", "precio": null, "entero": false, "estado": "estimado"},
+    "fruta": {"nombre": "Fruta picada", "envase_g": 1000, "unidad": "kg", "precio": 4125, "entero": false, "estado": "estimado"},
+    "azucar": {"nombre": "Azúcar", "envase_g": 1000, "unidad": "paquete de 1 kg", "precio": 1619, "entero": true, "estado": "estimado"},
+    "hielo": {"nombre": "Hielo", "envase_g": 2000, "unidad": "bolsa de 2 kg", "precio": 3990, "entero": true, "estado": "estimado"}
+  }
+}

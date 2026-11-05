@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Previómetro: calculá tu previa</title>
+  <meta name="description" content="Elegí el trago y cuántos son: proporciones, alcohol, costo y lista de compras con precios de supermercados de Capital Federal.">
+  <meta name="theme-color" content="#fafaf8">
+  <link rel="stylesheet" href="css/styles.css">
+  <script type="module" src="js/app.js"></script>
+</head>
+<body>
+  <header class="marca">
+    <h1>Previómetro</h1>
+    <p>Calculá tu previa.</p>
+  </header>
+
+  <main class="pagina">
+    <form id="armado" class="armado">
+      <fieldset class="bloque">
+        <legend>¿Qué toman?</legend>
+        <div id="tragos" class="tragos"></div>
+      </fieldset>
+
+      <fieldset class="bloque">
+        <legend>¿Qué tan fuerte?</legend>
+        <div id="intensidad" class="segmentos"></div>
+      </fieldset>
+
+      <fieldset class="bloque grupo">
+        <legend>¿Cuántos son?</legend>
+        <div class="fila">
+          <span id="l-personas">Personas</span>
+          <div class="stepper" data-campo="personas" role="group" aria-labelledby="l-personas">
+            <button type="button" data-paso="-1" aria-label="Una persona menos">-</button>
+            <output id="personas">4</output>
+            <button type="button" data-paso="1" aria-label="Una persona más">+</button>
+          </div>
+        </div>
+        <div class="fila">
+          <span id="l-tragos">Tragos por persona</span>
+          <div class="stepper" data-campo="tragosPorPersona" role="group" aria-labelledby="l-tragos">
+            <button type="button" data-paso="-1" aria-label="Un trago menos">-</button>
+            <output id="tragosPorPersona">3</output>
+            <button type="button" data-paso="1" aria-label="Un trago más">+</button>
+          </div>
+        </div>
+        <div class="presupuesto">
+          <label for="presupuesto">Presupuesto por persona (opcional)</label>
+          <div class="campo-plata">
+            <span aria-hidden="true">$</span>
+            <input id="presupuesto" type="text" inputmode="numeric" autocomplete="off" placeholder="Sin límite">
+          </div>
+        </div>
+      </fieldset>
+
+      <button type="submit" class="principal">Armar la previa</button>
+    </form>
+
+    <section id="resultado" class="resultado" aria-live="polite" tabindex="-1">
+      <p class="estado">Cargando precios...</p>
+    </section>
+  </main>
+
+  <footer class="pie">
+    <p id="fecha"></p>
+    <p>Solo para mayores de 18. Tomá con responsabilidad.</p>
+    <p>Valores aproximados.</p>
+  </footer>
+</body>
+</html>
