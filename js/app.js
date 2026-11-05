@@ -1,4 +1,4 @@
-import { calcular, INTENSIDADES } from "./calc.js";
+import { calcular, INTENSIDADES, liquidoDelVaso } from "./calc.js";
 
 const $ = (id) => document.getElementById(id);
 const pesos = (n) => "$" + Math.round(n).toLocaleString("es-AR");
@@ -7,7 +7,7 @@ const litros = (ml) => (ml >= 1000 ? `${decimal(ml / 1000)} L` : `${Math.round(m
 const gramos = (g) => (g >= 1000 ? `${decimal(g / 1000)} kg` : `${g} g`);
 const plural = (n, uno, varios) => `${n} ${n === 1 ? uno : varios}`;
 
-const estado = { trago: 0, intensidad: 1, personas: 4, tragosPorPersona: 3, presupuesto: 0 };
+const estado = { trago: 0, intensidad: 1, personas: 4, tragosPorPersona: 3, presupuesto: 0, quitados: [], vasoMl: 300 };
 let datos;
 let textoActual = "";
 
@@ -70,6 +70,7 @@ function textoCompras(trago, r) {
   return [
     `Previa: ${trago.nombre.toLowerCase()}, ${INTENSIDADES[estado.intensidad].toLowerCase()}`,
     `${plural(estado.personas, "persona", "personas")}, ${plural(estado.tragosPorPersona, "trago", "tragos")} cada una`,
+    `Vaso de ${estado.vasoMl} ml`,
     "",
     "Hay que comprar:",
     ...bebidas,
@@ -98,19 +99,29 @@ async function copiar(texto) {
   }
 }
 
-function dibujarAccesorios(r) {
+function dibujarAccesorios(trago, r) {
   const { extras } = datos.extras;
-  return r.extras.map((e) => {
+  const activos = r.extras.map((e) => {
     const x = extras[e.id];
-    if (e.sinPrecio) return `<li><span>${x.nombre}</span><span class="precio">Sin costo</span></li>`;
+    const quitar = `<button type="button" class="quitar" data-quitar="${e.id}" aria-label="Sacar ${x.nombre.toLowerCase()} de la compra">Sacar</button>`;
+    if (e.sinPrecio) return `<li><span>${x.nombre}</span><span class="precio">Sin costo</span><small>${quitar}</small></li>`;
     const cantidad = e.envases ? `${e.envases} x ${x.nombre} (${x.unidad})` : `${x.nombre}: ${gramos(e.gramosTotales)}`;
-    return `<li><span>${cantidad}</span><span class="precio">${pesos(e.costo)}</span><small>Precio estimado</small></li>`;
-  }).join("");
+    return `<li><span>${cantidad}</span><span class="precio">${pesos(e.costo)}</span><small>Precio estimado. ${quitar}</small></li>`;
+  });
+  const sacados = accesoriosDe(trago).filter((id) => estado.quitados.includes(id)).map((id) => {
+    const x = extras[id];
+    return `<li class="sacado"><span>${x.nombre}</span><span>Sacado</span><small><button type="button" class="quitar" data-sumar="${id}" aria-label="Volver a sumar ${x.nombre.toLowerCase()}">Volver a sumar</button></small></li>`;
+  });
+  return [...activos, ...sacados].join("");
+}
+
+function accesoriosDe(trago) {
+  return [...trago.extras.map((e) => e.extra).filter(Boolean), "hielo"];
 }
 
 function dibujar(animar = true) {
   const trago = datos.tragos[estado.trago];
-  const r = calcular({ ...estado, trago, catalogo: datos.catalogo, accesorios: datos.extras });
+  const r = calcular({ ...estado, trago, catalogo: datos.catalogo, accesorios: datos.extras, quitados: estado.quitados, vasoMl: estado.vasoMl });
   const nombre = (id) => datos.catalogo[id].ingrediente;
   const desactualizado = r.ingredientes.some((i) => datos.catalogo[i.id].desactualizado);
 
@@ -123,8 +134,9 @@ function dibujar(animar = true) {
         ${r.ingredientes.map((i, n) => `<i class="tono-${n}" style="--p:${i.porcentaje}"></i>`).join("")}
       </div>
       <ul class="porcentajes numero">
-        ${r.ingredientes.map((i, n) => `<li><span class="muestra tono-${n}"></span><b>${i.porcentaje}%</b> ${nombre(i.id).toLowerCase()}</li>`).join("")}
+        ${r.ingredientes.map((i, n) => `<li><span class="muestra tono-${n}"></span><b>${i.porcentaje}%</b> ${nombre(i.id).toLowerCase()} (${Math.round(i.mlPorTrago)} ml)</li>`).join("")}
       </ul>
+      <p class="extras numero">Vaso de ${estado.vasoMl} ml: ${liquidoDelVaso(estado.vasoMl)} ml de líquido y el resto hielo.</p>
       ${dibujarExtras(trago)}
       <p class="alcohol">Alcohol final aproximado: <strong class="numero">${decimal(r.alcohol)}%</strong></p>
     </div>
@@ -150,11 +162,12 @@ function dibujar(animar = true) {
             <small>${sobra}</small>
           </li>`;
         }).join("")}
-        ${dibujarAccesorios(r)}
+        ${dibujarAccesorios(trago, r)}
       </ul>
       <p class="total-compra numero"><span>Total a pagar</span><span>${pesos(r.costoCompra)}</span></p>
       ${dibujarRestos(r)}
-      <p class="nota">Limón, hielo y demás accesorios son precios y cantidades estimados.</p>
+      <button type="button" class="quitar todos" data-todos="${r.extras.length ? "sacar" : "sumar"}">${r.extras.length ? "Sacar todos los accesorios" : "Volver a sumar los accesorios"}</button>
+      ${r.extras.length ? `<p class="nota">Limón, hielo y demás accesorios son precios y cantidades estimados.</p>` : ""}
       <div class="compartir">
         <a class="accion llena" href="https://wa.me/?text=${encodeURIComponent(textoActual)}" target="_blank" rel="noopener">Mandar por WhatsApp</a>
         <button type="button" class="accion" id="copiar">Copiar lista</button>
@@ -198,18 +211,36 @@ function conectarControles() {
   document.querySelectorAll(".stepper").forEach((stepper) => {
     const campo = stepper.dataset.campo;
     const menos = stepper.querySelector('[data-paso="-1"]');
-    menos.disabled = estado[campo] <= 1;
+    const mas = stepper.querySelector('[data-paso="1"]');
+    const minimo = Number(stepper.dataset.min ?? 1);
+    const maximo = Number(stepper.dataset.max ?? 99);
+    const salto = Number(stepper.dataset.salto ?? 1);
+    menos.disabled = estado[campo] <= minimo;
     stepper.addEventListener("click", (e) => {
       const paso = Number(e.target.dataset?.paso);
       if (!paso) return;
-      estado[campo] = Math.min(99, Math.max(1, estado[campo] + paso));
+      estado[campo] = Math.min(maximo, Math.max(minimo, estado[campo] + paso * salto));
       $(campo).textContent = estado[campo];
-      menos.disabled = estado[campo] <= 1;
+      menos.disabled = estado[campo] <= minimo;
+      mas.disabled = estado[campo] >= maximo;
       dibujar();
     });
   });
 
   $("resultado").addEventListener("click", async (e) => {
+    const accion = e.target.closest("[data-quitar], [data-sumar], [data-todos]");
+    if (accion) {
+      const { quitar, sumar, todos } = accion.dataset;
+      const propios = accesoriosDe(datos.tragos[estado.trago]);
+      if (quitar) estado.quitados.push(quitar);
+      if (sumar) estado.quitados = estado.quitados.filter((id) => id !== sumar);
+      if (todos === "sacar") estado.quitados = [...new Set([...estado.quitados, ...propios])];
+      if (todos === "sumar") estado.quitados = estado.quitados.filter((id) => !propios.includes(id));
+      dibujar(false);
+      // El bloque se redibuja: el foco vuelve al mismo lugar para usarlo con teclado.
+      $("resultado").querySelector(".todos").focus({ preventScroll: true });
+      return;
+    }
     const boton = e.target.closest("#copiar");
     if (!boton) return;
     const ok = await copiar(textoActual);

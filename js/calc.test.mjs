@@ -96,3 +96,24 @@ test("accesorios: la menta va sin costo y el limón se prorratea", () => {
   assert.equal(r.extras.find((e) => e.id === "menta").sinPrecio, true);
   assert.ok(Math.abs(r.extras.find((e) => e.id === "limon").costo - 104) < 1e-9);
 });
+
+test("accesorios quitados: no se muestran ni se cobran", () => {
+  const accesorios = leer("../data/extras.json");
+  const opciones = { ...base, trago: buscar("tinto_verano"), intensidad: 1, personas: 10, tragosPorPersona: 2, accesorios };
+  const con = calcular(opciones);
+  const sin = calcular({ ...opciones, quitados: ["hielo"] });
+  assert.equal(con.costoCompra - sin.costoCompra, 3990);
+  assert.equal(sin.extras.length, 0);
+});
+
+test("vaso: el de 300 ml lleva 200 ml de líquido y el tamaño cambia las cuentas", () => {
+  const accesorios = leer("../data/extras.json");
+  const opciones = { ...base, trago: buscar("tinto_verano"), intensidad: 1, personas: 10, tragosPorPersona: 2, accesorios };
+  const normal = calcular(opciones);
+  const grande = calcular({ ...opciones, vasoMl: 600 });
+  assert.equal(normal.ingredientes[0].mlPorTrago, 100);
+  assert.equal(grande.ingredientes[0].mlPorTrago, 200);
+  assert.equal(grande.ingredientes[0].envases, 6);
+  assert.equal(grande.alcohol, normal.alcohol);
+  assert.equal(grande.extras[0].gramosTotales, 4000);
+});

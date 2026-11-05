@@ -83,7 +83,7 @@ legend { padding: 0; margin-bottom: 0.75rem; font-size: 1.25rem; font-weight: 65
 }
 .stepper button:active { transform: scale(0.93); }
 .stepper button:disabled { color: var(--linea); cursor: default; transform: none; }
-.stepper output { width: 2.75rem; text-align: center; font-weight: 650; font-variant-numeric: tabular-nums; }
+.stepper output { width: 3.25rem; text-align: center; font-weight: 650; font-variant-numeric: tabular-nums; }
 
 .presupuesto { margin-top: 0.9rem; }
 .presupuesto label { display: block; margin-bottom: 0.4rem; }
@@ -151,6 +151,21 @@ legend { padding: 0; margin-bottom: 0.75rem; font-size: 1.25rem; font-weight: 65
 .compras li + li { border-top: 1px solid var(--linea); }
 .compras .precio { font-weight: 650; font-variant-numeric: tabular-nums; }
 .compras small { grid-column: 1 / -1; color: var(--suave); font-size: 0.9375rem; }
+.quitar {
+  padding: 0.25rem 0;
+  font-size: 0.9375rem;
+  color: var(--aviso);
+  background: none;
+  border: 0;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: opacity 160ms ease, transform 140ms var(--ease-out);
+}
+.quitar:active { transform: scale(0.97); }
+.quitar.todos { display: block; margin-top: 0.5rem; }
+.compras .sacado > span { color: var(--suave); }
+.compras .sacado > span:first-child { text-decoration: line-through; }
+
 .total-compra { display: flex; justify-content: space-between; gap: 1rem; padding-top: 0.75rem; border-top: 2px solid var(--texto); font-size: 1.3rem; font-weight: 700; font-variant-numeric: tabular-nums; }
 .aparte { margin: 0.5rem 0 0; padding: 0; list-style: none; color: var(--suave); font-size: 0.9375rem; }
 
@@ -183,6 +198,7 @@ legend { padding: 0; margin-bottom: 0.75rem; font-size: 1.25rem; font-weight: 65
 @media (hover: hover) and (pointer: fine) {
   .trago:hover span { color: var(--acento); }
   .segmento:hover span, .stepper button:not(:disabled):hover { border-color: var(--texto); }
+  .quitar:hover { opacity: 0.7; }
   .principal:hover, .accion.llena:hover { background: #a9380a; border-color: #a9380a; }
   .accion:not(.llena):not(.hecho):hover { background: var(--acento-fondo); }
 }
@@ -203,5 +219,5 @@ legend { padding: 0; margin-bottom: 0.75rem; font-size: 1.25rem; font-weight: 65
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition-property: color, background-color, border-color, opacity !important; }
   .revelar { transform: none; }
-  .trago:active span, .segmento:active span, .stepper button:active, .principal:active, .accion:active { transform: none; }
+  .trago:active span, .segmento:active span, .stepper button:active, .principal:active, .accion:active, .quitar:active { transform: none; }
 }

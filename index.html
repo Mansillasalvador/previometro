@@ -27,6 +27,19 @@
         <div id="intensidad" class="segmentos"></div>
       </fieldset>
 
+      <fieldset class="bloque">
+        <legend>¿Qué vaso usan?</legend>
+        <div class="fila">
+          <span id="l-vaso">Tamaño en ml</span>
+          <div class="stepper" data-campo="vasoMl" data-min="100" data-max="1000" data-salto="50" role="group" aria-labelledby="l-vaso">
+            <button type="button" data-paso="-1" aria-label="50 ml menos">-</button>
+            <output id="vasoMl">300</output>
+            <button type="button" data-paso="1" aria-label="50 ml más">+</button>
+          </div>
+        </div>
+        <p class="nota">Un vaso largo común tiene unos 300 ml.</p>
+      </fieldset>
+
       <fieldset class="bloque grupo">
         <legend>¿Cuántos son?</legend>
         <div class="fila">

@@ -1,5 +1,7 @@
 // Fórmulas del BRIEF, sección 4. Sin acceso a la página: se testea con node.
-export const LIQUIDO_POR_TRAGO_ML = 200;
+export const VASO_BASE_ML = 300;
+// Un tercio del vaso lo ocupa el hielo: en el de 300 ml entran 200 ml de líquido.
+export const liquidoDelVaso = (vasoMl) => Math.round((vasoMl * 2) / 3);
 export const INTENSIDADES = ["Suave", "Medio", "Fuerte"];
 
 // Devuelve [{ id, porcentaje }] sumando 100, con el resto al final.
@@ -14,7 +16,8 @@ export function receta(trago, intensidad) {
 
 // catalogo: { [id]: { abv, precio, ml_envase } }
 // accesorios: contenido de extras.json. Sus costos son estimados y se suman a todo.
-export function calcular({ trago, intensidad, personas, tragosPorPersona, presupuesto, catalogo, accesorios }) {
+export function calcular({ trago, intensidad, personas, tragosPorPersona, presupuesto, catalogo, accesorios, quitados = [], vasoMl = VASO_BASE_ML }) {
+  const liquido = liquidoDelVaso(vasoMl);
   const tragosTotales = personas * tragosPorPersona;
   let alcohol = 0;
   let costoTrago = 0;
@@ -22,9 +25,9 @@ export function calcular({ trago, intensidad, personas, tragosPorPersona, presup
 
   const ingredientes = receta(trago, intensidad).map(({ id, porcentaje }) => {
     const { abv, precio, ml_envase: mlEnvase } = catalogo[id];
-    const mlPorTrago = (porcentaje * LIQUIDO_POR_TRAGO_ML) / 100;
+    const mlPorTrago = (porcentaje * liquido) / 100;
     // Se multiplica antes de dividir para que un decimal no sume un envase de más.
-    const mlTotales = (porcentaje * LIQUIDO_POR_TRAGO_ML * tragosTotales) / 100;
+    const mlTotales = (porcentaje * liquido * tragosTotales) / 100;
     const envases = Math.ceil(mlTotales / mlEnvase);
     const costoEnvases = envases * precio;
 
@@ -36,7 +39,7 @@ export function calcular({ trago, intensidad, personas, tragosPorPersona, presup
   });
 
   const pedidos = accesorios
-    ? [...trago.extras, { extra: "hielo", gramos: accesorios.hielo_g_por_trago }].filter((e) => e.extra)
+    ? [...trago.extras, { extra: "hielo", gramos: Math.round((accesorios.hielo_g_por_trago * vasoMl) / VASO_BASE_ML) }].filter((e) => e.extra && !quitados.includes(e.extra))
     : [];
   const extras = pedidos.map(({ extra: id, gramos }) => {
     const x = accesorios.extras[id];
