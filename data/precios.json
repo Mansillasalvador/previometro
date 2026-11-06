@@ -1,84 +1,84 @@
 {
-  "fecha_actualizacion": "2026-11-04",
+  "fecha_actualizacion": "2026-11-05",
   "precios": {
     "fernet": {
       "ean": "7790290101602",
       "ml_envase": 750,
       "precio": 21000.0,
-      "sucursales": 894,
-      "fecha": "2026-11-04",
+      "sucursales": 893,
+      "fecha": "2026-11-05",
       "desactualizado": false
     },
     "coca": {
       "ean": "7790895000997",
       "ml_envase": 2250,
       "precio": 6100.0,
-      "sucursales": 903,
-      "fecha": "2026-11-04",
+      "sucursales": 901,
+      "fecha": "2026-11-05",
       "desactualizado": false
     },
     "gin": {
       "ean": "7791250002267",
       "ml_envase": 700,
       "precio": 19500.0,
-      "sucursales": 898,
-      "fecha": "2026-11-04",
+      "sucursales": 895,
+      "fecha": "2026-11-05",
       "desactualizado": false
     },
     "tonica": {
       "ean": "7790895006715",
       "ml_envase": 1500,
       "precio": 5000.0,
-      "sucursales": 915,
-      "fecha": "2026-11-04",
+      "sucursales": 910,
+      "fecha": "2026-11-05",
       "desactualizado": false
     },
     "vino_tinto": {
       "ean": "7790070760579",
       "ml_envase": 750,
       "precio": 6700.0,
-      "sucursales": 874,
-      "fecha": "2026-11-04",
+      "sucursales": 867,
+      "fecha": "2026-11-05",
       "desactualizado": false
     },
     "soda": {
       "ean": "7798113301529",
       "ml_envase": 2000,
       "precio": 2355.0,
-      "sucursales": 381,
-      "fecha": "2026-11-04",
+      "sucursales": 373,
+      "fecha": "2026-11-05",
       "desactualizado": false
     },
     "aperol": {
       "ean": "7891136057029",
       "ml_envase": 750,
       "precio": 15900.0,
-      "sucursales": 893,
-      "fecha": "2026-11-04",
+      "sucursales": 891,
+      "fecha": "2026-11-05",
       "desactualizado": false
     },
     "espumante": {
       "ean": "7791670027604",
       "ml_envase": 750,
       "precio": 6935.0,
-      "sucursales": 629,
-      "fecha": "2026-11-04",
+      "sucursales": 635,
+      "fecha": "2026-11-05",
       "desactualizado": false
     },
     "campari": {
       "ean": "7791200200781",
       "ml_envase": 750,
       "precio": 15900.0,
-      "sucursales": 859,
-      "fecha": "2026-11-04",
+      "sucursales": 856,
+      "fecha": "2026-11-05",
       "desactualizado": false
     },
     "jugo_naranja": {
       "ean": "7790895648441",
       "ml_envase": 995,
       "precio": 3450.0,
-      "sucursales": 457,
-      "fecha": "2026-11-04",
+      "sucursales": 455,
+      "fecha": "2026-11-05",
       "desactualizado": false
     },
     "ron": {
@@ -86,55 +86,55 @@
       "ml_envase": 750,
       "precio": 21215.0,
       "sucursales": 408,
-      "fecha": "2026-11-04",
+      "fecha": "2026-11-05",
       "desactualizado": false
     },
     "vodka": {
       "ean": "7791250001345",
       "ml_envase": 700,
       "precio": 12300.0,
-      "sucursales": 885,
-      "fecha": "2026-11-04",
+      "sucursales": 886,
+      "fecha": "2026-11-05",
       "desactualizado": false
     },
     "gancia": {
       "ean": "7790950000160",
       "ml_envase": 950,
       "precio": 10599.0,
-      "sucursales": 898,
-      "fecha": "2026-11-04",
+      "sucursales": 894,
+      "fecha": "2026-11-05",
       "desactualizado": false
     },
     "sprite": {
       "ean": "7790895001000",
       "ml_envase": 2250,
       "precio": 6100.0,
-      "sucursales": 911,
-      "fecha": "2026-11-04",
+      "sucursales": 908,
+      "fecha": "2026-11-05",
       "desactualizado": false
     },
     "vino_blanco": {
       "ean": "7790070760555",
       "ml_envase": 750,
       "precio": 6700.0,
-      "sucursales": 859,
-      "fecha": "2026-11-04",
+      "sucursales": 856,
+      "fecha": "2026-11-05",
       "desactualizado": false
     },
     "gaseosa_lima_limon": {
       "ean": "7791813444411",
       "ml_envase": 1500,
       "precio": 3950.0,
-      "sucursales": 881,
-      "fecha": "2026-11-04",
+      "sucursales": 879,
+      "fecha": "2026-11-05",
       "desactualizado": false
     },
     "energizante": {
       "ean": "7798119220183",
       "ml_envase": 473,
       "precio": 3045.0,
-      "sucursales": 867,
-      "fecha": "2026-11-04",
+      "sucursales": 869,
+      "fecha": "2026-11-05",
       "desactualizado": false
     }
   }
